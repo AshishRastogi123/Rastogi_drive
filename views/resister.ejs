@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+
+  <body
+    class="bg-grey-100 dark:bg-gray-800 w-screen flex items-center justify-center min-h-screen p-6">
+    
+
+<form class="w-96"
+      action="/user/register"
+      method="POST">
+    
+        <div class="mb-6">
+            <label for="User_name" class="block mb-2.5 text-sm font-medium text-heading">User name</label>
+            <input type="text" id="User_name" class="bg-gray-800 border border-gray-600 text-gray-200 placeholder-gray-500 rounded-lg px-3 py-2 focus:ring-blue-500 focus:border-blue-500 w-full"  name="User_name" placeholder="John" required />
+        </div>
+        
+
+    <div class="mb-6">
+        <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email address</label>
+        <input type="email" id="email" class="bg-gray-800 border border-gray-600 text-gray-200 placeholder-gray-500 rounded-lg px-3 py-2 focus:ring-blue-500 focus:border-blue-500 w-full" name="email" placeholder="john.doe@company.com" required />
+    </div> 
+    <div class="mb-6">
+        <label for="password" class="block mb-2.5 text-sm font-medium text-heading">Password</label>
+        <input type="password" id="password" class="bg-gray-800 border border-gray-600 text-gray-200 placeholder-gray-500 rounded-lg px-3 py-2 focus:ring-blue-500 focus:border-blue-500 w-full"  name="password" placeholder="•••••••••" required />
+    </div> 
+    
+    
+<button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 rounded-xl  shadow-xs font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none">Submit</button>    </form>
+
+
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+
+</html>
