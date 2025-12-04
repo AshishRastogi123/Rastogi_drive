@@ -4,6 +4,8 @@ const auth = require('../middleware/authe.middleware.js');
 const supabase = require('../config/supabaseClient');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
+const sharp = require('sharp');
+const path = require('path');
 
 router.get('/', (req, res) => {
     res.redirect('/user/login');
@@ -22,12 +24,49 @@ router.get('/home', auth, async (req, res) => {
             return res.render("home", { files: [] });
         }
 
-        const filesWithUrls = files.map(file => ({
-            ...file,
-            publicUrl: supabase.storage
+        const filesWithUrls = files.map(file => {
+            const publicUrl = supabase.storage
                 .from('files')
-                .getPublicUrl(folder + file.name).data.publicUrl
-        }));
+                .getPublicUrl(folder + file.name).data.publicUrl;
+
+            let thumbnailUrl = null;
+            let iconUrl = null;
+
+            const ext = path.extname(file.name).toLowerCase();
+            const imageExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+
+            if (imageExts.includes(ext)) {
+                // For images, set thumbnail URL and fallback icon
+                const thumbnailPath = `thumbnails/${req.user.userId}/${file.name}.jpg`;
+                thumbnailUrl = supabase.storage
+                    .from('files')
+                    .getPublicUrl(thumbnailPath).data.publicUrl;
+
+                iconUrl = 'https://png.pngtree.com/png-clipart/20190630/original/pngtree-jpg-file-document-icon-png-image_4166388.jpg';
+            } else {
+                // For non-images, assign a file icon based on extension
+                const iconMap = {
+                    '.pdf': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmVyb_J7mffdpI4vLpXlZi9tmzmXAy990KGg&s',
+                    '.doc': 'https://e1.pngegg.com/pngimages/65/212/png-clipart-android-lollipop-icons-docs-google-document-icon-thumbnail.png',
+                    '.docx': 'https://e1.pngegg.com/pngimages/65/212/png-clipart-android-lollipop-icons-docs-google-document-icon-thumbnail.png',
+                    '.txt': 'https://cdn-icons-png.flaticon.com/512/2656/2656402.png',
+                    '.zip': 'https://cdn-icons-png.freepik.com/512/9704/9704802.png',
+                    '.mp4': 'https://via.placeholder.com/50x50/800080/FFFFFF?text=VID',
+                    '.jpg': 'https://png.pngtree.com/png-clipart/20190630/original/pngtree-jpg-file-document-icon-png-image_4166388.jpg',
+                    '.png': 'https://www.freeiconspng.com/uploads/file-format-png-icon-4.png',
+                    '.gif': 'https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-vector-gif-icon-png-image_925847.jpg',
+                    // Add more as needed
+                };
+                iconUrl = iconMap[ext] || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmVyb_J7mffdpI4vLpXlZi9tmzmXAy990KGg&s';
+            }
+
+            return {
+                ...file,
+                publicUrl,
+                thumbnailUrl,
+                iconUrl
+            };
+        });
 
         res.render("home", { files: filesWithUrls });
 
@@ -45,7 +84,8 @@ router.post('/upload-file', auth, upload.single('file'), async (req, res) => {
             return res.status(400).send('No file uploaded');
         }
 
-        const filePath = `${req.user.userId}/${Date.now()}-${file.originalname}`;
+        const timestamp = Date.now();
+        const filePath = `${req.user.userId}/${timestamp}-${file.originalname}`;
         const { data, error } = await supabase.storage.from('files').upload(filePath, file.buffer, {
             contentType: file.mimetype,
         });
@@ -54,6 +94,29 @@ router.post('/upload-file', auth, upload.single('file'), async (req, res) => {
         if (error) {
             console.error('Error uploading file:', error);
             return res.status(500).send('Error uploading file');
+        }
+
+        // Generate thumbnail for images
+        if (file.mimetype.startsWith('image/')) {
+            try {
+                const thumbnailBuffer = await sharp(file.buffer)
+                    .resize(200, 200, { fit: 'inside' })
+                    .jpeg({ quality: 80 })
+                    .toBuffer();
+
+                const thumbnailPath = `thumbnails/${req.user.userId}/${timestamp}-${file.originalname}.jpg`;
+
+                const { error: thumbError } = await supabase.storage.from('files').upload(thumbnailPath, thumbnailBuffer, {
+                    contentType: 'image/jpeg',
+                });
+
+                if (thumbError) {
+                    console.error('Error uploading thumbnail:', thumbError);
+                    // Don't fail the upload if thumbnail fails
+                }
+            } catch (thumbErr) {
+                console.error('Error generating thumbnail:', thumbErr);
+            }
         }
 
         res.redirect('/home');
