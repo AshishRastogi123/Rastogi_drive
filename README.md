@@ -4,9 +4,8 @@ A full-stack web application that mimics the functionality of Google Drive, allo
 
 ## Demo
 
-![Demo GIF](demo.gif)
+![Demo GIF](demo.png)
 
-*Replace `demo.gif` with your actual demo GIF file showing the app in action.*
 
 ## Features
 

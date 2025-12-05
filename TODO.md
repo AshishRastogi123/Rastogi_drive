@@ -1,1 +1,0 @@
-- [x] Edit routes/user.routes.js to fix the /profile route: add auth middleware, make handler async, fetch user from DB using req.user.userId, pass user_name and email to res.render, and remove the res.send line.
