@@ -104,7 +104,9 @@ router.post('/upload-file', auth, upload.single('file'), async (req, res) => {
                     .jpeg({ quality: 80 })
                     .toBuffer();
 
-                const thumbnailPath = `thumbnails/${req.user.userId}/${timestamp}-${file.originalname}.jpg`;
+                const originalName = file.name; // e.g. 1733394444000-myimage.png
+                const thumbnailPath = `thumbnails/${req.user.userId}/${originalName}.jpg`;
+
 
                 const { error: thumbError } = await supabase.storage.from('files').upload(thumbnailPath, thumbnailBuffer, {
                     contentType: 'image/jpeg',

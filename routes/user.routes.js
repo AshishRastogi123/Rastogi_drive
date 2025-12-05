@@ -10,10 +10,19 @@ const upload = multer({ dest: 'uploads/' });
 const auth = require('../middleware/authe.middleware.js');
 app = express();
 
-router.get('/profile', (req, res) => {
-    res.render('profile', { title: 'User Profile' });
-    res.send("User route created") // Render the profile.ejs file
+router.get('/profile', auth, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.user.userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.render('profile', { user_name: user.user_name, email: user.email });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
 });
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,6 +31,7 @@ router.get("/resister", (req, res) => {
     res.render("resister")
 }
 );
+
 router.post("/register",
     body("email").trim().isEmail().isLength({min:13}),
     body("password").trim().isLength({min:5}),
