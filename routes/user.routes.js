@@ -57,7 +57,7 @@ router.post("/register",
         password:hashedPassword, 
         });
     
-    res.json(newuser);
+    res.redirect('/user/login');
 
     
 }

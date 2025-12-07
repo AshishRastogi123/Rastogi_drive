@@ -68,11 +68,11 @@ router.get('/home', auth, async (req, res) => {
             };
         });
 
-        res.render("home", { files: filesWithUrls });
+        res.render("home", { files: filesWithUrls, user_name: req.user.user_name });
 
     } catch (err) {
         console.error('Error:', err);
-        res.render("home", { files: [] });
+        res.render("home", { files: [], user_name: req.user.user_name });
     }
 });
 
