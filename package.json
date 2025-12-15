@@ -1,9 +1,9 @@
 {
-  "name": "google-drive",
+  "name": "RastogiDrive",
   "version": "1.0.0",
-  "description": "",
+  "description": "RastogiDrive - A secure cloud storage application built using Node.js, Express, EJS, Supabase, featuring authentication, file upload, folder management, and secure access control.",
   "license": "ISC",
-  "author": "",
+  "author": "Ashish Rastogi",
   "type": "commonjs",
   "main": "app.js",
   "scripts": {

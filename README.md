@@ -1,6 +1,6 @@
-# Rastogi Drive - Google Drive based drive
+# Rastogi Drive
 
-A full-stack web application that mimics the functionality of Google Drive, allowing users to upload, view, download, and manage their files securely.
+A full-stack web application for secure cloud storage, allowing users to upload, view, download, and manage their files securely.
 
 ## Demo
 
