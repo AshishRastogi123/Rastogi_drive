@@ -8,7 +8,6 @@ const supabase = require('../config/supabaseClient');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const auth = require('../middleware/authe.middleware.js');
-app = express();
 
 router.get('/profile', auth, async (req, res) => {
     try {
@@ -23,19 +22,15 @@ router.get('/profile', auth, async (req, res) => {
 });
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
 router.get("/resister", (req, res) => {
     res.render("resister")
 }
 );
 
 router.post("/register",
-    body("email").trim().isEmail().isLength({min:13}),
+    body("email").trim().isEmail(),
     body("password").trim().isLength({min:5}),
-    body("user_name").trim().isLength({min:3}) ,
+    body("user_name").trim().isLength({min:3}),
     async (req, res) => {
     console.log("REGISTER BODY:", req.body);
     const errors = validationResult(req);
@@ -94,7 +89,7 @@ router.post("/login",
 
     const token = jwt.sign({userId: user._id,
     user_name: user.user_name}, process.env.JWT_SECRET);
-    res.cookie("token",token)
+    res.cookie("token", token, { httpOnly: true, secure: true, sameSite: 'strict' });
     res.redirect('/home');
 }
 );
