@@ -1,6 +1,16 @@
 # Rastogi Drive
 
-A full-stack web application for secure cloud storage, allowing users to upload, view, download, and manage their files securely.
+<table>
+  <tr>
+    <td width="50%">
+      <h3>Description</h3>
+      <p>A full-stack web application for secure cloud storage, allowing users to upload, view, download, and manage their files securely.</p>
+    </td>
+    <td width="50%" align="center">
+      <img src="name.png" alt="Rastogi Drive" width="100%">
+    </td>
+  </tr>
+</table>
 
 ## Demo
 

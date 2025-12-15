@@ -33,7 +33,7 @@ router.get('/home', auth, async (req, res) => {
             let iconUrl = null;
 
             const ext = path.extname(file.name).toLowerCase();
-            const imageExts = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+            const imageExts = ['.jpg', '.jpeg', '.webp', '.svg'];
 
             if (imageExts.includes(ext)) {
                 // For images, set thumbnail URL and fallback icon
@@ -51,10 +51,11 @@ router.get('/home', auth, async (req, res) => {
                     '.docx': 'https://e1.pngegg.com/pngimages/65/212/png-clipart-android-lollipop-icons-docs-google-document-icon-thumbnail.png',
                     '.txt': 'https://cdn-icons-png.flaticon.com/512/2656/2656402.png',
                     '.zip': 'https://cdn-icons-png.freepik.com/512/9704/9704802.png',
-                    '.mp4': 'https://via.placeholder.com/50x50/800080/FFFFFF?text=VID',
-                    '.jpg': 'https://png.pngtree.com/png-clipart/20190630/original/pngtree-jpg-file-document-icon-png-image_4166388.jpg',
-                    '.png': 'https://www.freeiconspng.com/uploads/file-format-png-icon-4.png',
+                    '.mp4': 'https://www.shareicon.net/data/512x512/2016/07/26/802187_file_512x512.png',
+                    '.jpg': 'https://cdn-icons-png.freepik.com/512/9201/9201673.png',
+                    '.png': 'https://cdn-icons-png.freepik.com/512/9201/9201673.png',
                     '.gif': 'https://png.pngtree.com/png-vector/20190411/ourmid/pngtree-vector-gif-icon-png-image_925847.jpg',
+                    '.mkv':'https://www.shutterstock.com/image-vector/mkv-file-icons-flat-extension-260nw-2442699107.jpg'
                     // Add more as needed
                 };
                 iconUrl = iconMap[ext] || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmVyb_J7mffdpI4vLpXlZi9tmzmXAy990KGg&s';
