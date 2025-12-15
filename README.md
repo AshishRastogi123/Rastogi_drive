@@ -3,7 +3,7 @@
 ## Description
 
 <div style="display: flex; align-items: center; gap: 30px;">
-  <div style="flex: 1;">
+  <div style="flex: 1;" width="40%">
     <p><strong>Rastogi Drive</strong> is a modern, full-stack web application designed for <em>secure cloud storage</em>. It enables users to seamlessly upload, view, download, and manage their files with enterprise-grade security and a beautiful, intuitive interface.</p>    
     <h1>✨ Key Highlights:</h4>
     <ul>
@@ -15,7 +15,7 @@
     </ul>
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="name.png" alt="Rastogi Drive" width="100%" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <img src="name.png" alt="Rastogi Drive" width="30%" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
   </div>
 </div>
 
