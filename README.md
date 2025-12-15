@@ -1,26 +1,23 @@
 # 🚀 Rastogi Drive - Secure Cloud Storage
 
-<table border="0">
-  <tr>
-    <td width="60%">
-      <h3>📋 Description</h3>
-      <p><strong>Rastogi Drive</strong> is a modern, full-stack web application designed for <em>secure cloud storage</em>. It enables users to seamlessly upload, view, download, and manage their files with enterprise-grade security and a beautiful, intuitive interface.</p>
-      
-      <h4>✨ Key Highlights:</h4>
-      <ul>
-        <li>🔐 End-to-end secure file management</li>
-        <li>⚡ Lightning-fast file operations</li>
-        <li>📱 Fully responsive design</li>
-        <li>🎨 Modern UI with Tailwind CSS</li>
-        <li>☁️ Cloud-powered storage with Supabase</li>
-      </ul>
-    </td>
-    <td width="40%" align="center">
-      <img src="name.png" alt="Rastogi Drive" width="95%" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-      <p><em>Rastogi Drive Interface</em></p>
-    </td>
-  </tr>
-</table>
+## Description
+
+<div style="display: flex; align-items: center; gap: 30px;">
+  <div style="flex: 1;">
+    <p><strong>Rastogi Drive</strong> is a modern, full-stack web application designed for <em>secure cloud storage</em>. It enables users to seamlessly upload, view, download, and manage their files with enterprise-grade security and a beautiful, intuitive interface.</p>    
+    <h1>✨ Key Highlights:</h4>
+    <ul>
+      <li>🔐 End-to-end secure file management</li>
+      <li>⚡ Lightning-fast file operations</li>
+      <li>📱 Fully responsive design</li>
+      <li>🎨 Modern UI with Tailwind CSS</li>
+      <li>☁️ Cloud-powered storage with Supabase</li>
+    </ul>
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <img src="name.png" alt="Rastogi Drive" width="100%" style="border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  </div>
+</div>
 
 ## Demo
 
