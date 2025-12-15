@@ -1,6 +1,6 @@
 # Rastogi Drive
 
-<table>
+<table border="0">
   <tr>
     <td width="50%">
       <h3>Description</h3>
